@@ -37,46 +37,15 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     FoodMobileTheme {
-                        FoodMobileLoad()
+                        val loading = false
+                        if (loading) {
+                            Loader()
+                        } else {
+                            Home()
+                        }
                     }
                 }
             }
         }
-    }
-}
-
-
-@Composable
-fun Title(title: String, modifier: Modifier = Modifier){
-    Text(text = title,
-        fontSize = 100.sp,
-        textAlign = TextAlign.Center
-    )
-}
-@Composable
-fun FoodMobileLoad(modifier: Modifier = Modifier){
-    val image = painterResource(R.drawable.food_logo_graphics_1_70)
-    Box(modifier) {
-        Image(
-            painter = image,
-            contentDescription = null
-        )
-        Title(
-            title = "FoodArk",
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
-
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FoodMobilePreview() {
-    FoodMobileTheme {
-    FoodMobileLoad(
-
-    )
     }
 }
