@@ -18,6 +18,8 @@ val recipes = arrayOf(
 
     }
 )
+
+val test = Recipe(1,"","","", arrayListOf("",""));
 @Composable
 fun Home(modifier: Modifier = Modifier){
     Column(
