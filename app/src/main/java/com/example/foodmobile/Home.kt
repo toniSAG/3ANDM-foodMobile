@@ -12,11 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.foodmobile.ui.theme.FoodMobileTheme
 
+data class Ingredients(val nom: String, val quantite: Int)
 //En attendant l'implémentation api
-val recipes = arrayOf(
-    {
+//val recipes = arrayOf(
 
-    }
+    //Ingredients("pomme", "farine", "sucre", "oeufs")
+
 )
 @Composable
 fun Home(modifier: Modifier = Modifier){
