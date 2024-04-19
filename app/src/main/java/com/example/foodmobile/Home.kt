@@ -3,7 +3,6 @@ package com.example.foodmobile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -33,7 +32,7 @@ import java.util.Locale
 
 
 val test = Recipe(1,"pizza","url","", arrayListOf("pate a pizza","tomate"))
-val categories = listOf("chicken", "beef", "pizza", "hamburger", "chips", "kebab")
+val categories = listOf("chicken", "beef", "pizza", "hamburger", "chips", "kebab", "bbq", "pasta")
 @Composable
 fun Home() {
     Column(
@@ -43,12 +42,16 @@ fun Home() {
     {
         SearchBar()
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround,
-            
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
+                .padding(start = 5.dp),
         ) {
             for (category in categories) {
-                TopButton(text = category)
+                TopButton(
+                    text = category,
+                    Modifier.padding(end = 10.dp)
+                )
             }
         }
         Column(
@@ -80,14 +83,15 @@ fun SearchBar(){
 }
 
 @Composable
-fun TopButton(text: String){
+fun TopButton(text: String, modifier: Modifier = Modifier){
     Button(
         onClick = { /*TODO*/ },
         shape = RoundedCornerShape(5.dp),
-        contentPadding = PaddingValues(start = 4.dp, end = 4.dp)
+        contentPadding = PaddingValues(start = 4.dp, end = 4.dp),
+        modifier = modifier
     )
     {
-        Text(text = text)
+        Text(text = text.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })
     }
 }
 
