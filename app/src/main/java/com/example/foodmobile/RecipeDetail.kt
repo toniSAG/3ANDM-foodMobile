@@ -39,9 +39,9 @@ fun RecipeDetailPage(recipeId: Int, navController: NavController){
         Column (modifier = Modifier.padding(start = 15.dp)) {
             CardTitle(text = recipe.title)
             Text(text = recipe.updatedAt, modifier = Modifier.padding(top = 5.dp))
+            Column (modifier = Modifier.padding(start = 15.dp, top = 10.dp)) {
             for(ingredient in recipe.ingredients){
-                Column (modifier = Modifier.padding(start = 10.dp)) {
-                    Text(text = ingredient, fontSize = 15.sp)
+                    Text(text = ingredient, fontSize = 15.sp, modifier = Modifier.padding(bottom = 2.dp))
                 }
             }
         }
@@ -52,8 +52,7 @@ fun RecipeDetailPage(recipeId: Int, navController: NavController){
                 .fillMaxWidth()
                 .fillMaxHeight(),
         ) {
-
-            Button(onClick = { navController.navigate(Route.Home.name) }) {
+            Button(onClick = { navController.navigate(Route.Home.name) }, modifier = Modifier.padding(bottom = 10.dp)) {
                 Text(text = "Retour")
             }
         }
