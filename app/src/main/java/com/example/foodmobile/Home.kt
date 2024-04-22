@@ -2,6 +2,7 @@ package com.example.foodmobile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -31,7 +32,13 @@ import com.example.foodmobile.ui.theme.FoodMobileTheme
 import java.util.Locale
 
 
-val test = Recipe(1,"pizza","url","", arrayListOf("pate a pizza","tomate"))
+val testRecipe = Recipe(1,"pizza","url","", arrayListOf("pate a pizza","tomate"))
+val testRecipes = listOf<Recipe>(
+    Recipe(1,"pizza","url","", arrayListOf("pate a pizza","tomate")),
+    Recipe(2,"Pate Carbo","url","", arrayListOf("pate a pizza","tomate")),
+    Recipe(3,"Pate Bolo","url","", arrayListOf("pate a pizza","tomate")),
+    Recipe(4,"Tartiflette","url","", arrayListOf("pate a pizza","tomate")),
+)
 val categories = listOf("chicken", "beef", "pizza", "hamburger", "chips", "kebab", "bbq", "pasta")
 @Composable
 fun Home() {
@@ -57,8 +64,8 @@ fun Home() {
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
-            repeat(3){
-                RecipeCard(recipe = test)
+            for(recipe in testRecipes){
+                RecipeCard(recipe = recipe)
             }
         }
     }
@@ -95,11 +102,16 @@ fun TopButton(text: String, modifier: Modifier = Modifier){
     }
 }
 
+private fun recipeCardOnClick(recipe: Recipe){
+}
+
 @Composable
 fun RecipeCard(recipe: Recipe){
     val image = painterResource(id = R.drawable.pizza_stock)
     Card (
-      modifier = Modifier.padding(5.dp)
+        modifier = Modifier
+            .padding(5.dp)
+            .clickable { recipeCardOnClick(recipe) },
     ) {
         Image(
             painter = image,
@@ -153,7 +165,7 @@ fun TopButtonPreview(){
 @Preview(showSystemUi = false)
 @Composable
 fun RecipeCardPreview(){
-    RecipeCard(recipe = test)
+    RecipeCard(recipe = testRecipe)
 }
 
 @Preview
