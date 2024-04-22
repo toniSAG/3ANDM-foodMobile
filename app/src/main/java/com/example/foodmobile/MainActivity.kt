@@ -24,12 +24,7 @@ class MainActivity : ComponentActivity() {
                     contentAlignment = Alignment.Center
                 ) {
                     FoodMobileTheme {
-                        val loading = false
-                        if (loading) {
-                            Loader()
-                        } else {
-                            Home()
-                        }
+                        Nav()
                     }
                 }
             }

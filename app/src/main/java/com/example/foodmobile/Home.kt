@@ -28,20 +28,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.foodmobile.ui.theme.FoodMobileTheme
 import java.util.Locale
 
 
 val testRecipe = Recipe(1,"pizza","url","", arrayListOf("pate a pizza","tomate"))
 val testRecipes = listOf<Recipe>(
-    Recipe(1,"pizza","url","", arrayListOf("pate a pizza","tomate")),
-    Recipe(2,"Pate Carbo","url","", arrayListOf("pate a pizza","tomate")),
-    Recipe(3,"Pate Bolo","url","", arrayListOf("pate a pizza","tomate")),
-    Recipe(4,"Tartiflette","url","", arrayListOf("pate a pizza","tomate")),
+    Recipe(1,"pizza","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
+    Recipe(2,"Pate Carbo","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
+    Recipe(3,"Pate Bolo","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
+    Recipe(4,"Tartiflette","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
 )
 val categories = listOf("chicken", "beef", "pizza", "hamburger", "chips", "kebab", "bbq", "pasta")
 @Composable
-fun Home() {
+fun Home(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -65,7 +67,7 @@ fun Home() {
             modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
             for(recipe in testRecipes){
-                RecipeCard(recipe = recipe)
+                RecipeCard(recipe, navController)
             }
         }
     }
@@ -102,16 +104,14 @@ fun TopButton(text: String, modifier: Modifier = Modifier){
     }
 }
 
-private fun recipeCardOnClick(recipe: Recipe){
-}
-
 @Composable
-fun RecipeCard(recipe: Recipe){
+fun RecipeCard(recipe: Recipe, navController: NavController){
+    val recipeId = testRecipes.indexOf(recipe);
     val image = painterResource(id = R.drawable.pizza_stock)
     Card (
         modifier = Modifier
             .padding(5.dp)
-            .clickable { recipeCardOnClick(recipe) },
+            .clickable { navController.navigate("${Route.Details.name}/$recipeId") },
     ) {
         Image(
             painter = image,
@@ -137,12 +137,12 @@ fun CardTitle(text: String, modifier: Modifier = Modifier){
     )
 }
 
-
 @Preview(name = "Home", showBackground = true)
 @Composable
 fun HomePreview(){
     FoodMobileTheme {
-        Home()
+        val navController = rememberNavController()
+        Home(navController = navController)
     }
 }
 
@@ -165,7 +165,8 @@ fun TopButtonPreview(){
 @Preview(showSystemUi = false)
 @Composable
 fun RecipeCardPreview(){
-    RecipeCard(recipe = testRecipe)
+    val navController = rememberNavController()
+    RecipeCard(recipe = testRecipe, navController)
 }
 
 @Preview
