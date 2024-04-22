@@ -36,10 +36,10 @@ import java.util.Locale
 
 val testRecipe = Recipe(1,"pizza","url","", arrayListOf("pate a pizza","tomate"))
 val testRecipes = listOf<Recipe>(
-    Recipe(1,"pizza","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
-    Recipe(2,"Pate Carbo","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
-    Recipe(3,"Pate Bolo","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
-    Recipe(4,"Tartiflette","url","January 1st, 2023", arrayListOf("pate a pizza","tomate")),
+    Recipe(1,"pizza","url","23 Janvier, 2023", arrayListOf("pâte a pizza","2 tomates", "100g de fromage à raper", "6 tranches de peperoni")),
+    Recipe(2,"pâte carbonara","url","5 Juin, 2019", arrayListOf("250g de penne", "3 oeufs", "200g de parmesan", "100g de lardons")),
+    Recipe(3,"pâte bolognaise","url","6 Septembre, 2015", arrayListOf("250g de spaghetti","150g de sauce bolognaise")),
+    Recipe(4,"tartiflette","url","25 Décembre, 2023", arrayListOf("4 - 5 pommes de terre","200g de lardons", "2 reblochons")),
 )
 val categories = listOf("chicken", "beef", "pizza", "hamburger", "chips", "kebab", "bbq", "pasta")
 @Composable
